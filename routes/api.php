@@ -36,7 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('task/{id}/user', [TaskController::class, 'getTaskUser']);
     Route::post('tasks/{taskId}/categories', [TaskController::class, 'addCategoryToTask']);
 
+        Route::get('task/all', [TaskController::class, 'getAllTasks'])->middleware('CheckUser');
+
+
     // Task CRUD باستخدام apiResource
     Route::apiResource('tasks', TaskController::class)
         ->only(['index', 'show', 'store', 'update', 'destroy']);
 });
+// Category routes
